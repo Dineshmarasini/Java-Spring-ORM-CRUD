@@ -78,7 +78,7 @@ public class App
         		System.out.println("Id: "+element.getEmpId());
         		System.out.println("Name: "+element.getEmpName());
         		System.out.println("Position: "+element.getEmpPosition());
-        		System.out.println("Salary");
+        		System.out.println("Salary:"+ element.getEmpSalary());
         		System.out.println("______________________________________________________");
         	}
         	break;
@@ -86,21 +86,24 @@ public class App
         case 3:
         	//get single object
         	 
-        	System.out.println("Enter user id:");
-        	int userId=Integer.parseInt(bReader.readLine());
-        	Student student= studentDao.getStudent(userId);
-        	System.out.println("Name: "+student.getStudentName());
-    		System.out.println("Id: "+student.getStudentId());
-    		System.out.println("City: "+student.getStudentCity());
+        	System.out.println("Enter emp id:");
+        	int empId=Integer.parseInt(bReader.readLine());
+        	Employee employee= employeeDao.getEmployee(empId);
+        	System.out.println("Id: "+employee.getEmpId());
+        	System.out.println("Name: "+employee.getEmpName());
+        	System.out.println("Position: "+employee.getEmpPosition());
+        	System.out.println("Salary: "+employee.getEmpSalary());
+    		
+    		 
         	
         	break;
         	
         	
         case 4:
         	//delete all student
-        	System.out.println("Enter user id:");
+        	System.out.println("Enter Emp id:");
         	int id=Integer.parseInt(bReader.readLine());
-        	studentDao.deleteStudent(id);
+           employeeDao.deleteEmployees(id);
         	System.out.println("successfully deleted...!");
         	 
         	 
@@ -108,15 +111,18 @@ public class App
         	
         case 5:
         	//update student
-        	System.out.print("type in the id of student you want to update:");
+        	System.out.print("ID of employee for update:");
 			int oldId = Integer.parseInt(bReader.readLine());
 			System.out.print("Enter new user name:");
 			String namee= bReader.readLine();
-			System.out.print("Enter new user city:");
-			String cityy= bReader.readLine();
-			studentDao.deleteStudent(oldId);
-			Student student3 = new Student(oldId, namee, cityy);
-			studentDao.insert(student3);
+			System.out.print("Enter new user Position:");
+			String position= bReader.readLine();
+		    System.out.print("Enter new user salary:");
+			int salary=  Integer.parseInt(bReader.readLine());
+			
+			employeeDao.deleteEmployees(oldId);
+			Employee emp1 = new Employee(oldId, namee, position,salary);
+			employeeDao.insert(emp1);
 			System.out.println("one row updated");
 			break;
         	
